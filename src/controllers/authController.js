@@ -1,7 +1,9 @@
 import User from "../models/User.js"
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 
 class AuthController{
+
    
     static cadastrarUsuario = async (req, res) =>{
         const { email } = req.body;
@@ -29,11 +31,21 @@ class AuthController{
             return res.status(400).send({error: "Credenciais incorretas !"})
         }
 
-        
+        // Geração de Token
 
-        return res.send()
+        user.senha = undefined;
+        return res.send(
+            {
+                user,
+                token: this.gerarToken(user.id)
+            }
+        )
 
+    }
+    
+    static gerarToken(id){
+        return jwt.sign({id}, process.env.API_SECRET, {expiresIn: 86400})
     }
 }
 
-export default AuthController
+export default AuthController;
