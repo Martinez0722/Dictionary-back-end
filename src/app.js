@@ -1,8 +1,8 @@
 import express from "express"
 import database from "./config/database.js"
 import dotenv from "dotenv-safe"
-import authRouter from "./routes/authRouter.js"
 import router from "./routes/router.js"
+import authRouter from "./routes/authRouter.js"
 
 dotenv.config()
 
@@ -14,6 +14,6 @@ app.use(express.json())
 
 //Caminho Raíz das Request
 app.use('/auth', authRouter)
-// app.use('/', router)
+app.use('/', router)
 
 export default app;
