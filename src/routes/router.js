@@ -7,7 +7,7 @@ import wordController from "../controllers/wordController.js";
 const router = express.Router();
 
 router.get("/", wordController.boasVindas)
-router.get(`/buscadepalavras`, wordController.buscaDePalavras)
+router.get("/buscadeumapalavra", wordController.buscaDeUmaPalavra)
 
 
 

@@ -1,4 +1,4 @@
-
+import fetch from "node-fetch";
 
 class wordController{
 
@@ -7,17 +7,14 @@ class wordController{
          return await res.send ({message:"Fullstack Challenge 🏅 - Dictionary"})
     }
 
-    static buscaDePalavras(req, res){
-        const word = req.body
-        word.json()
+    static buscaDeUmaPalavra(req, res){
+        const {word} = req.body
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-        .then((res) => res.json())
+        .then((res) => res.json(word) )
         .then(data =>{
            res.send(data)
         });
-       }
-       
-    
+    }
+          
 }
-
 export default wordController;
