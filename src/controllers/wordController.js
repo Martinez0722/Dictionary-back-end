@@ -1,4 +1,5 @@
-import fetch from "node-fetch";
+import Word from "../models/Words.js"
+import fetch from "node-fetch"
 
 class wordController{
 
