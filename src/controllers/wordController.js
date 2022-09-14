@@ -12,7 +12,10 @@ class wordController{
          return await res.send ({message:"Fullstack Challenge 🏅 - Dictionary"})
     }
 
-
+    // static save = function (req, res, next){
+    //     console.log('Safe');
+    //     next();
+    //    }
 
     static buscaDeUmaPalavra (req, res){
         const word = req.params.word
