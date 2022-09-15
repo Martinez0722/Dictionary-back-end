@@ -5,6 +5,7 @@ import fetch from "node-fetch"
 
 
 
+
 class wordController{
 
     
@@ -12,12 +13,10 @@ class wordController{
          return await res.send ({message:"Fullstack Challenge 🏅 - Dictionary"})
     }
 
-    // static save = function (req, res, next){
-    //     console.log('Safe');
-    //     next();
-    //    }
+    
 
     static buscaDeUmaPalavra (req, res){
+
         const word = req.params.word
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
         .then((res) => res.json(word))
@@ -25,33 +24,19 @@ class wordController{
             res.send(data)
         
         })
+        if(word){
+            const search = Word.findOne({word})
+            return word
+        }
+        const save = Word.create({word})
             
-            
-            
-          
-        //    const dados  = data
-        //    const palavraRegistrada = Word.findOne({dados})
-        //    
-            
-        //    return 'Palavra já registrada'
-        //    if(!cache)
-        //         const save = Word.create(cache)   
-           
-            
-        //    const find = Word.findOne(cache)
-        ;
-        
-    }
-    
-    // static historicoDePalavras = async (req,res) =>{
-    //     const{data} = req.body 
-    //     const wordSearched= await Word.findOne({data})
-    //     if(!data){
-    //         const word = await Word.create(req.body)
-    //     }
-    //     res.send(data)
-    // }
-    
+     };
           
 }
+
+
+
+
+
+
 export default wordController;
