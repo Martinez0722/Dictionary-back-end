@@ -9,8 +9,10 @@ const router = express.Router();
 
 
 
-// router.get("/", wordController.boasVindas)
+router.get("/", wordController.boasVindas)
 router.get("/buscadeumapalavra/:word", wordController.buscaDeUmaPalavra)
+router.get("/historico", wordController.historico )
+router.post("/favoritos", wordController.palavrafavorita )
 
 
 
