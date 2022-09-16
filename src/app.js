@@ -14,6 +14,6 @@ app.use(express.json())
 
 //Caminho Raíz das Request
 app.use('/auth', authRouter)
-app.use('/', router)
+app.use('/teste', router)
 
 export default app;

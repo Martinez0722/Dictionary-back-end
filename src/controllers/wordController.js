@@ -15,17 +15,36 @@ class wordController{
     }
 
     
-    static buscaDeUmaPalavra = async (req, res) =>{
+    // static buscaDeUmaPalavra = async (req, res) =>{
 
-        const word = req.params.word
+    //     const word = req.params.word
         
-        await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-        .then((res) => res.json(word))
-        .then(data =>{
-            res.send(data)
-            const save = Word.create({word})
+    //     await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+    //     .then((res) => res.json(word))
+    //     .then(data =>{
+    //         res.send(data)
+    //         const save = Word.create({word})
+    //     })
+    // }
+
+    static buscaDeUmaPalavra = async (req, res) => {
+
+        const wordFromParam = req.params.word
+        
+        const wordFound = await Word.findOne({word: wordFromParam})
+        
+        if (wordFound)
+            return res.status(200).send(wordFromParam)
+
+        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordFromParam}`)
+        .then((resApi) => resApi.json())
+        .then(async data  => { 
+           await Word.create({ word:wordFromParam })
+            return res.send(data)
+            
         })
-    }
+            
+     };
 
     static historico = async(req, res) => {
             Word.find(function (err, Words) {
@@ -48,10 +67,7 @@ class wordController{
         })
     }
 
-    static deletarPalavraFavorita = async(req, res)=>{
-        const {word} = req.body
-
-    }
+    
 }
 
 
