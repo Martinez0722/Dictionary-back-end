@@ -3,6 +3,8 @@ import database from "./config/database.js"
 import dotenv from "dotenv-safe"
 import router from "./routes/router.js"
 import authRouter from "./routes/authRouter.js"
+import download from "./downloadScript.js"
+
 
 dotenv.config()
 
@@ -14,6 +16,7 @@ app.use(express.json())
 
 //Caminho Raíz das Request
 app.use('/auth', authRouter)
-app.use('/teste', router)
+app.use('/', router)
+app.use('/',download)
 
 export default app;
