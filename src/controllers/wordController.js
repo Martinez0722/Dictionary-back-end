@@ -4,9 +4,6 @@ import favoriteWord from "../models/FavoriteWord.js"
 
 
 
-
-
-
 class wordController{
 
     
@@ -25,18 +22,18 @@ class wordController{
         if (wordFound)
             return res.status(200).send(wordFromParam)
 
-        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordFromParam}`)
-        .then((resApi) => resApi.json())
-        .then(async data  => { 
-           await Word.create({ word:wordFromParam })
-            return res.send(data)
+            fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordFromParam}`)
+            .then((resApi) => resApi.json())
+            .then(async data  => { 
+                await Word.create({ word:wordFromParam })
+                 return res.send(data)
             
         })
             
     };
 
     static historico = async(req, res) => {
-            Word.find(function (err, Words) {
+           await Word.find(function (err, Words) {
             if(err){
                 res.status(500).send({message: err.message})
             }
@@ -44,7 +41,7 @@ class wordController{
         })
     }
     
-    static palavrafavorita = async (req, res) =>{
+    static palavraFavorita = async (req, res) =>{
         const word = req.body.word 
         
         await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
@@ -55,12 +52,31 @@ class wordController{
         })
     }
 
+    static historicoPalavraFavorita = async(req,res)=>{
+        await favoriteWord.find(function (err, Words) {
+
+        if(err){
+            res.status(500).send({message: err.message})
+        }
+            res.status(200).send({Words})
+
+        })
+    }
+
+
+    static deletarFavorito = async (req,res)=>{
+        const word = req.body.word;
+        const foundWord = await favoriteWord.findOne({word})
+
+        if(!foundWord){
+            return res.status(400).send({error:"Palavra não encontrada"})
+        }else{
+            await favoriteWord.deleteOne({word})
+            return res.send({message:"Palavra deletada com sucesso !"})
+        }
+    }
+
     
 }
-
-
-
-
-
 
 export default wordController;
