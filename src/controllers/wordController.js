@@ -33,12 +33,12 @@ class wordController{
     };
 
     static historico = async(req, res) => {
-           await Word.find(function (err, Words) {
-            if(err){
-                res.status(500).send({message: err.message})
-            }
-                res.status(200).send({Words})
-        })
+        const findWord = await Word.find();
+        if(!findWord){
+            res.status(404).send({message:"Not Found"})
+        }
+        res.send(findWord)
+           
     }
     
     static palavraFavorita = async (req, res) =>{
@@ -53,15 +53,13 @@ class wordController{
     }
 
     static historicoPalavraFavorita = async(req,res)=>{
-        await favoriteWord.find(function (err, Words) {
-
-        if(err){
-            res.status(500).send({message: err.message})
-        }
-            res.status(200).send({Words})
-
-        })
+      const findFavoriteWord =  await favoriteWord.find()
+      if(!findFavoriteWord){
+          res.status(404).send({message:"Not Found"})
+      }
+      res.send(findFavoriteWord)
     }
+         
 
 
     static deletarFavorito = async (req,res)=>{
