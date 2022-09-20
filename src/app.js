@@ -4,6 +4,7 @@ import dotenv from "dotenv-safe"
 import router from "./routes/router.js"
 import authRouter from "./routes/authRouter.js"
 import download from "./downloadScript.js"
+import fileOpener from "../txtReader.js"
 
 
 dotenv.config()
@@ -18,5 +19,6 @@ app.use(express.json())
 app.use('/auth', authRouter)
 app.use('/', router)
 app.use('/',download)
+
 
 export default app;

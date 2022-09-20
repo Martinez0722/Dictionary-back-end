@@ -19,6 +19,7 @@ class wordController{
         
         const wordFound = await Word.findOne({word: wordFromParam})
         
+        
         if (wordFound)
             return res.status(200).send(wordFromParam)
 

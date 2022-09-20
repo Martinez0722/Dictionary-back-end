@@ -1,26 +1,33 @@
 import fs from "fs"
 import wordList from "./src/models/WordList.js"
-const file_name = './english.txt'
+import readLine  from "readline"
+const file_name = './normal.txt'
+import mongoose from "mongoose"
 
 const path =  `${file_name}`
 
 
-const str = function fileOpener(path){
-    fs.open(path, 'r', function(error,data){
+
+
+function fileOpener(path){
+    fs.readFile(path, 'utf-8', function(error,data){
         if(error){
             console.log('erro de leitura'+error.message)
         }else{
-            for(let data in path){
-               console.log(data) 
+
+            for(let word in data){
+              const reader = readLine.createInterface(data)({
+              })
+              console.log(reader)
+                
             }
-           
+            
         }
     })
 }
 
 
-
-
-// export default fileOpener;
+fileOpener(path)
+export default fileOpener;
 
 
