@@ -6,6 +6,7 @@ const wordListSchema = new mongoose.Schema(
         word:{
                 type: String,
                 required: true
+                
             }
     }
 )
