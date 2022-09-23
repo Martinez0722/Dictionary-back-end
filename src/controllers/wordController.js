@@ -1,6 +1,7 @@
 import Word from "../models/Words.js"
 import fetch from "node-fetch"
 import favoriteWord from "../models/FavoriteWord.js"
+import wordList from "../models/WordList.js"
 
 
 
@@ -32,6 +33,14 @@ class wordController{
         })
             
     };
+
+    static buscaLista = async(req,res) =>{
+        const findList = await wordList.find();
+        if(!findList){
+            res.status(404).send({message:"List not found"})
+        }
+        res.send(findList)
+    }
 
     static historico = async(req, res) => {
         const findWord = await Word.find();
