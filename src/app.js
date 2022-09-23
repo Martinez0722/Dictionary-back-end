@@ -5,6 +5,7 @@ import router from "./routes/router.js"
 import authRouter from "./routes/authRouter.js"
 import download from "./downloadScript.js"
 import fileOpener from "../txtReader.js"
+import cors from "cors";
 
 
 dotenv.config()
@@ -16,9 +17,10 @@ const app = express();
 app.use(express.json())
 
 //Caminho Raíz das Request
-app.use('/auth', authRouter)
-app.use('/', router)
-app.use('/',download)
+app.use(cors());
+app.use('/auth', authRouter);
+app.use('/', router);
+app.use('/',download);
 
 
 export default app;
