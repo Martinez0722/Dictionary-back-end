@@ -2,11 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs"
 
 const UserSchema = new mongoose.Schema(
-    {
-        usuario:{
-            type: String,
-            required: true,
-        },
+    {    
         email:{
             type: String,
             unique: true,
@@ -17,7 +13,7 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true,
             select: false
-        },
+        }
     }
 )
 

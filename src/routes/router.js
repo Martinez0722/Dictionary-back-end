@@ -6,12 +6,12 @@ const router = express.Router();
 
 
 router.get("/", wordController.boasVindas)
-router.get("/entries/en/:word", wordController.buscaDeUmaPalavra)
+router.get("/entries/en/", wordController.buscaDeUmaPalavra)
 router.get("/history", wordController.historico)
 router.get("/list", wordController.buscaLista)
-router.post("/entries/en/:word/favorite", wordController.palavraFavorita )
-router.get('/listafavoritos', wordController.historicoPalavraFavorita)
-router.delete("/entries/en/:word/unfavorite", wordController.deletarFavorito)
+router.post("/entries/en/favorite", wordController.palavraFavorita )
+router.get('/favorites', wordController.historicoPalavraFavorita)
+router.delete("/entries/en/unfavorite", wordController.deletarFavorito)
 
 
 

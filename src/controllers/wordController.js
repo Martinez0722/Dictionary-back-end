@@ -16,7 +16,7 @@ class wordController{
 
     static buscaDeUmaPalavra = async (req, res) => {
 
-        const wordFromParam = req.params.word
+        const wordFromParam = req.body.word
         
         const wordFound = await Word.findOne({word: wordFromParam})
         

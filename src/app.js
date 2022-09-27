@@ -16,7 +16,7 @@ database.on("error", () => console.log("Conexão quebrada, houve um erro:"));
 const app = express();
 app.use(express.json())
 
-//Caminho Raíz das Request
+
 app.use(cors());
 app.use('/auth', authRouter);
 app.use('/', router);
